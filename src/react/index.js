@@ -11,9 +11,4 @@ const store = createStore()
 
 const mountNode = document.getElementById('app')
 
-ReactDOM.render(
-  <Provider store={store}>
-    <List />
-  </Provider>,
-  mountNode
-)
+ReactDOM.render(<List store={store}/>, mountNode)

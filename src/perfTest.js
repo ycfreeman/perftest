@@ -1,11 +1,15 @@
 // libs
 import _ from 'lodash'
 
+// local
+import { crazyLog, superCrazyLog } from './crazyLog'
+
 // performance tester
 export default (() => {
 
   const numberOfItems = 100
-  const numberOfUpdates = 100
+  const numberOfUpdates = 300
+  const startDelay = 0
 
   let times = {
     start: 0,
@@ -14,7 +18,7 @@ export default (() => {
     pauseTotal: 0
   }
   let perfTestFn = () => {}
-  let perfTestParams = 0
+  let testParams = 0
 
   const startTimer = () => times.start = performance.now()
   const endTimer = () => times.end = performance.now()
@@ -26,31 +30,30 @@ export default (() => {
   const resetTimer = () => _.map(times, (val, key) => times[key] = 0)
   const testIsRunning = () => times.start !== 0
 
-  const start = ({ updateFn, fnParams }) => {
-    if (_.isFunction(updateFn)) {
-      perfTestFn = updateFn
-    }
-    perfTestParams = fnParams
+  const start = (actions, dispatch) => {
+    const { updateEverything, updateNothing, incAllInt, incNthInt } = actions
+    perfTestFn = () => dispatch(incAllInt())
+    testParams = 10
     startTimer()
-    perfTestFn(perfTestParams)
+    perfTestFn(testParams)
   }
 
-  const end = (logger) => {
+  const end = () => {
     if (testIsRunning()) {
-      const message = summary(endTimer())
-      resetTimer()
-      if (_.isFunction(logger)) {
-        logger(message)
+      endTimer()
+      if (avgTime() < 17) {
+        superCrazyLog(summary())
       } else {
-        console.log(message)
+        crazyLog(summary())
       }
+      resetTimer()
     }
   }
 
   const pause = () => pauseTimer()
   const resume = () => {
     resumeTimer()
-    perfTestFn(perfTestParams)
+    perfTestFn(testParams)
   }
 
   return {
@@ -60,6 +63,7 @@ export default (() => {
     resume,
     isRunning: testIsRunning,
     numberOfItems,
-    numberOfUpdates
+    numberOfUpdates,
+    startDelay
   }
 })()

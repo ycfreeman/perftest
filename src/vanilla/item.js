@@ -4,6 +4,7 @@ export default (items) => {
     return `
       <li id=${id}>
         <div class="row">
+          <input type="checkbox" />
           <span class="str">${str}</span>
           <span class="int">${int}</span>
         </div>

@@ -5,7 +5,6 @@ import { connect } from 'react-redux'
 import raf from 'raf'
 
 // local
-import crazyLog from '../crazyLog'
 import perfTest from '../perfTest'
 import * as actions from '../redux/actions'
 
@@ -19,21 +18,25 @@ class list extends React.Component {
   render() {
     const { data } = this.props.data
     
+    // SWITCH CLASS AND FUNCTION COMPONENTS
     // const Item = ItemClass
     const Item = ItemFn
+    //
     
     const listItems = data.map(item => <Item key={item.id} item={item} />)
     return <ul>{listItems}</ul>
   }
 
   componentDidMount() {
-    perfTest.start(this.testFn())
+    setTimeout(() => {
+      perfTest.start(actions, this.props.store.dispatch)
+    }, perfTest.startDelay)
   }
 
   componentDidUpdate() {
     const noMoreTests = this.props.data.updatesRemaining === 0
     if (noMoreTests || !perfTest.isRunning()) {
-      perfTest.end(crazyLog)
+      perfTest.end()
     } else {
       // pause while waiting for next frame, then resume
       perfTest.pause()

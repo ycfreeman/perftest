@@ -1,4 +1,5 @@
 // libs
+import _ from 'lodash'
 import raf from 'raf'
 
 // local
@@ -6,7 +7,7 @@ import perfTest from '../perfTest'
 import * as actions from '../redux/actions'
 
 // views
-import Item from './item'
+import Item, { itemUpdate } from './item'
 
 export default class List {
 
@@ -18,20 +19,23 @@ export default class List {
   }
 
   start() {
-    this.update()
+    this.initialRender()
     setTimeout(() => {
       perfTest.start(actions, this.store.dispatch)
     }, perfTest.startDelay)
   }
 
-  update() {
-    const { data } = this.getState()
-    const listItems = Item(data)
+  initialRender() {
+    this.getState()
+    const listItems = Item(this.currentItems)
     this.el.innerHTML = `<ul>${listItems}</ul>`
   }
 
   render() {
-    this.update()
+    // NOTE: we are not considering a 
+    // change in the number of items
+    this.getState()
+    itemUpdate(this.currentItems, this.prevItems)
     this.didUpdate()
   }
 
@@ -49,6 +53,12 @@ export default class List {
 
   getState() {
     const storeState = this.store.getState()
-    return storeState[this.storeKey]
+    const data = storeState[this.storeKey]
+    if (!_.isEmpty(this.currentItems)) {
+      this.prevItems = _.cloneDeep(this.currentItems)
+    }
+    this.currentItems = data.data
+
+    return data
   }
 }

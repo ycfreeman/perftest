@@ -6,7 +6,8 @@ module.exports = {
 
   entry: {
     react: './react',
-    vanilla: './vanilla'
+    vanilla: './vanilla',
+    vanillaSmart: './vanillaSmart'
   },
 
   output: {
