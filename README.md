@@ -7,5 +7,7 @@ npm start
 ```
 
 ### Tests
-The number of items and updates can be changed in *src/perfTest.js*.
-The test performed can be changed by altering the *testFn()* in *list.js* of the appropiate "framework".
+The file *src/perfTest.js* allows you to configure: 
+- Test performed
+- Number of items
+- Number of passes / updates
