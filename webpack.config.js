@@ -1,5 +1,3 @@
-var LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
-// var webpack = require('webpack')
 var path = require('path')
 
 module.exports = {
@@ -12,21 +10,13 @@ module.exports = {
   },
 
   output: {
-    path: path.resolve(__dirname, 'build'),
+    path: path.resolve(__dirname, 'demo'),
     filename: '[name]/app.js',
   },
 
   module: {
     loaders: [
-      {
-        test: /\.jsx?$/,
-        exclude: /node_modules/,
-        loaders: ['react-hot', 'babel']
-      }
+      { test: /\.jsx?$/, exclude: /node_modules/, loaders: ['react-hot', 'babel'] }
     ],
-  },
-
-  'plugins': [
-    new LodashModuleReplacementPlugin
-  ]
+  }
 }

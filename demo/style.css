@@ -1,0 +1,19 @@
+body { background-color: #eee; }
+ul {
+  list-style: none;
+  display: table;
+  position: relative;
+  width: 90%;
+  margin: 1em auto;
+  padding: 0;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+ul.menu { font-size: 2em; width: auto; }
+ul.menu li { padding: 1em;}
+li { border-bottom: 1px solid #ddd }
+li span { padding: .25em 1em; }
+li .row { display: table-row; }
+li .int, li .str { display: table-cell; }
+li .row, li .str { width: 100%; }
