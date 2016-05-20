@@ -15,8 +15,8 @@ const ACTION_HANDLERS = {
         const { int, str } = action.payload[i]
 
         // BUG
-        const isOdd = i === 1 || i % 3 === 0
-        const newInt = isOdd && int > 100 && int < 150 ? 'BUGOUTMAN' : int
+        const isAThing = i === 1 || i % 3 === 0
+        const newInt = isAThing && int > 100 && int < 150 ? 'BUGOUTMAN' : int
         // BUG
 
         return Object.assign({}, item, { int: newInt, str })

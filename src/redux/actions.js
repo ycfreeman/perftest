@@ -29,9 +29,9 @@ export const incAllInt = () => {
   }
 }
 
-export const incNthInt = (nthFn) => {
+export const incNthInt = (nthVal) => {
   return {
     type: 'INC_NTH_INT',
-    payload: nthFn
+    payload: nthVal
   }
 }
