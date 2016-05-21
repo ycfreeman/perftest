@@ -7,7 +7,8 @@ module.exports = {
   entry: {
     react: './react',
     vanilla: './vanilla',
-    vanillaSmart: './vanillaSmart'
+    vanillaSmart: './vanillaSmart',
+    'ios/reduxTest/js': './ios'
   },
 
   output: {
@@ -17,7 +18,8 @@ module.exports = {
 
   module: {
     loaders: [
-      { test: /\.jsx?$/, exclude: /node_modules/, loaders: ['react-hot', 'babel'] }
+      // { test: /\.jsx?$/, exclude: /node_modules/, loaders: ['react-hot', 'babel'] }
+      { test: /\.jsx?$/, exclude: /node_modules/, loaders: ['babel'] }
     ],
   }
 }

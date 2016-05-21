@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "start": "npm run dev",
-    "dev": "webpack-dev-server --host localhost --port 8080 --content-base demo/ --hot --inline"
+    "dev": "webpack-dev-server --host localhost --port 8080 --content-base demo/ --hot --inline",
+    "build": "webpack --content-base demo/ --watch"
   },
   "author": "",
   "license": "UNLICENSED",
