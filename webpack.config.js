@@ -8,7 +8,8 @@ module.exports = {
     react: './react',
     vanilla: './vanilla',
     vanillaSmart: './vanillaSmart',
-    'ios/reduxTest/js': './ios'
+    'ios/reduxTest/reduxTest/Assets.xcassets/js/app.dataset': './ios',
+    'ios/reduxTest/reduxTest/js.playground/Resources': './ios'
   },
 
   output: {

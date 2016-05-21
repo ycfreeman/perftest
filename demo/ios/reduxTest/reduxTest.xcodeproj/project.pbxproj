@@ -10,11 +10,11 @@
 		777179031CEFDE89004BE97C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777179021CEFDE89004BE97C /* AppDelegate.swift */; };
 		777179051CEFDE89004BE97C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777179041CEFDE89004BE97C /* ViewController.swift */; };
 		777179081CEFDE89004BE97C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 777179061CEFDE89004BE97C /* Main.storyboard */; };
-		7771790A1CEFDE89004BE97C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 777179091CEFDE89004BE97C /* Assets.xcassets */; };
 		7771790D1CEFDE89004BE97C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7771790B1CEFDE89004BE97C /* LaunchScreen.storyboard */; };
 		777179181CEFDE89004BE97C /* reduxTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777179171CEFDE89004BE97C /* reduxTestTests.swift */; };
 		777179231CEFDE89004BE97C /* reduxTestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777179221CEFDE89004BE97C /* reduxTestUITests.swift */; };
-		77BEE2351CEFF12E00B17491 /* app.js in Resources */ = {isa = PBXBuildFile; fileRef = 77BEE2341CEFF12E00B17491 /* app.js */; };
+		77BEE2461CF00CF100B17491 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 777179091CEFDE89004BE97C /* Assets.xcassets */; };
+		ECD1517B400C8B59F921CB7D /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F14049C0B5B4AF1C61DAA12F /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		44818F96FD95BAA627B44C68 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		777178FF1CEFDE89004BE97C /* reduxTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = reduxTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		777179021CEFDE89004BE97C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		777179041CEFDE89004BE97C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -49,7 +50,10 @@
 		777179221CEFDE89004BE97C /* reduxTestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = reduxTestUITests.swift; sourceTree = "<group>"; };
 		777179241CEFDE89004BE97C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		777179301CEFE3FE004BE97C /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
-		77BEE2341CEFF12E00B17491 /* app.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = app.js; path = js/app.js; sourceTree = "<group>"; };
+		77BEE2451CF00C4100B17491 /* js.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = js.playground; sourceTree = "<group>"; };
+		77BEE2471CF0293200B17491 /* JSCoreBom.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JSCoreBom.framework; path = "Pods/../build/Debug-iphoneos/JSCoreBom.framework"; sourceTree = "<group>"; };
+		8FDD92C6D13556C36DED0169 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		F14049C0B5B4AF1C61DAA12F /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECD1517B400C8B59F921CB7D /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,15 +82,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4EDCE3EFB8D7E83E989F3F54 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				77BEE2471CF0293200B17491 /* JSCoreBom.framework */,
+				F14049C0B5B4AF1C61DAA12F /* Pods.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		777178F61CEFDE89004BE97C = {
 			isa = PBXGroup;
 			children = (
-				77BEE2331CEFF10D00B17491 /* js */,
 				777179301CEFE3FE004BE97C /* Cartfile */,
 				777179011CEFDE89004BE97C /* reduxTest */,
 				777179161CEFDE89004BE97C /* reduxTestTests */,
 				777179211CEFDE89004BE97C /* reduxTestUITests */,
 				777179001CEFDE89004BE97C /* Products */,
+				D5F27F4BFDBA8BCF6F45D91E /* Pods */,
+				4EDCE3EFB8D7E83E989F3F54 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -108,6 +123,7 @@
 				777179091CEFDE89004BE97C /* Assets.xcassets */,
 				7771790B1CEFDE89004BE97C /* LaunchScreen.storyboard */,
 				7771790E1CEFDE89004BE97C /* Info.plist */,
+				77BEE2451CF00C4100B17491 /* js.playground */,
 			);
 			path = reduxTest;
 			sourceTree = "<group>";
@@ -130,12 +146,13 @@
 			path = reduxTestUITests;
 			sourceTree = "<group>";
 		};
-		77BEE2331CEFF10D00B17491 /* js */ = {
+		D5F27F4BFDBA8BCF6F45D91E /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				77BEE2341CEFF12E00B17491 /* app.js */,
+				44818F96FD95BAA627B44C68 /* Pods.debug.xcconfig */,
+				8FDD92C6D13556C36DED0169 /* Pods.release.xcconfig */,
 			);
-			name = js;
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -145,9 +162,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 777179271CEFDE89004BE97C /* Build configuration list for PBXNativeTarget "reduxTest" */;
 			buildPhases = (
+				5B1047C21C2ED0B9BDE0B5B7 /* Check Pods Manifest.lock */,
 				777178FB1CEFDE89004BE97C /* Sources */,
 				777178FC1CEFDE89004BE97C /* Frameworks */,
 				777178FD1CEFDE89004BE97C /* Resources */,
+				1AF49D69E16AEDC6BC7480D2 /* Embed Pods Frameworks */,
+				412F6A061619A91800DF336B /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -243,8 +263,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7771790D1CEFDE89004BE97C /* LaunchScreen.storyboard in Resources */,
-				7771790A1CEFDE89004BE97C /* Assets.xcassets in Resources */,
-				77BEE2351CEFF12E00B17491 /* app.js in Resources */,
+				77BEE2461CF00CF100B17491 /* Assets.xcassets in Resources */,
 				777179081CEFDE89004BE97C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -264,6 +283,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1AF49D69E16AEDC6BC7480D2 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		412F6A061619A91800DF336B /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5B1047C21C2ED0B9BDE0B5B7 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		777178FB1CEFDE89004BE97C /* Sources */ = {
@@ -411,8 +478,14 @@
 		};
 		777179281CEFDE89004BE97C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 44818F96FD95BAA627B44C68 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				INFOPLIST_FILE = reduxTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = au.com.ladbrokes.reduxTest;
@@ -422,8 +495,14 @@
 		};
 		777179291CEFDE89004BE97C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8FDD92C6D13556C36DED0169 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				INFOPLIST_FILE = reduxTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = au.com.ladbrokes.reduxTest;

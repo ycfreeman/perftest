@@ -1,15 +1,10 @@
-import createStore from '../store'
-import List from './list'
+import createStore from "../store";
+import List from "./list";
 
 const store = createStore();
 
-/**
- * mountNode is platform specific and coupled with list component (standardize it?)
- */
-//
-// const mountNode = document.getElementById('app')
-//
-// document.addEventListener('DOMContentLoaded', () => {
-//     const app = new List({ el: mountNode, store })
-//     app.start()
-// })
+for (var key in global) {
+    console.log(key);
+}
+
+window.list = new List({ store });
