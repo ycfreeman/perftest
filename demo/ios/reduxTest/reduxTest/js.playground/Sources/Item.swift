@@ -10,7 +10,7 @@ import JavaScriptCore
     
     static func createWithId(id: NSNumber, str: String, int: NSNumber) -> Item
     
-    // test
+    // static emit function (shouldn't be here)
     static func emitItems(items: [Item])
 }
 

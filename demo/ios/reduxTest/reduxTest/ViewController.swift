@@ -23,7 +23,8 @@ class ViewController: UITableViewController {
         // we also need an adaptor that converts js object to native object / view model
         // then we consume the native object / view model
         
-        if let appJsData = NSDataAsset(name: "app"), script = String(data: appJsData.data, encoding: NSUTF8StringEncoding) {
+        if let appJsData = NSDataAsset(name: "app"),
+            script = String(data: appJsData.data, encoding: NSUTF8StringEncoding) {
             
             let jsApp: String = "var window = this; \(script)"
             
@@ -36,9 +37,9 @@ class ViewController: UITableViewController {
             context.exceptionHandler = { context, exception in
                 print("JS Error: \(exception)")
             }
+            context.setObject(Item.self, forKeyedSubscript: "Item")
             context.evaluateScript(jsApp)
             context.evaluateScript("list.start()")
-            context.evaluateScript("setTimeout(function(){ console.log('Hi in 5 seconds!')},5000);")
         }
 
         
