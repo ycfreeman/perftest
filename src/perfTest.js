@@ -8,7 +8,7 @@ import { crazyLog, superCrazyLog } from './crazyLog'
 export default (() => {
 
   const numberOfItems = 100
-  const numberOfUpdates = 300
+  const numberOfUpdates = 1000
   const startDelay = 0
 
   let times = {
@@ -35,8 +35,8 @@ export default (() => {
     // 
     // perfTestFn = () => dispatch(updateEverything())
     // perfTestFn = () => dispatch(updateNothing())
-    // perfTestFn = () => dispatch(incAllInt())
-    perfTestFn = () => dispatch(incNthInt(10))
+    perfTestFn = () => dispatch(incAllInt())
+    // perfTestFn = () => dispatch(incNthInt(10))
     // 
     testParams = 10
     startTimer()

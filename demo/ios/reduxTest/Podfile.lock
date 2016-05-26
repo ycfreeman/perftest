@@ -1,17 +1,22 @@
 PODS:
   - JSCoreBom (1.1.1)
-  - RxCocoa (2.5.0):
-    - RxSwift (~> 2.5)
-  - RxSwift (2.5.0)
+  - RxCocoa (2.2.0):
+    - RxSwift (~> 2.2)
+  - RxDataSources (0.6.1):
+    - RxCocoa (~> 2.2)
+    - RxSwift (~> 2.2)
+  - RxSwift (2.2.0)
 
 DEPENDENCIES:
   - JSCoreBom (~> 1.1.1)
-  - RxCocoa (~> 2.0)
-  - RxSwift (~> 2.0)
+  - RxCocoa (~> 2.2.0)
+  - RxDataSources (= 0.6.1)
+  - RxSwift (~> 2.2.0)
 
 SPEC CHECKSUMS:
   JSCoreBom: 712590b897ecd74d9fa9cb0f16857491411c932b
-  RxCocoa: e1b1562e57a554d0fb2aabf9d71b637f177257c7
-  RxSwift: 402b41a50e922a0368fc14cb3bc9f4427920e8ae
+  RxCocoa: 42efb7a7145a8d1d5878e94ce48a580d29e0c796
+  RxDataSources: f201802aa904bcbc17c38b82e92f282df401a0ce
+  RxSwift: b8a749f2204c6c7a5c29b306a9c3bc11d5b87c5b
 
 COCOAPODS: 0.39.0
