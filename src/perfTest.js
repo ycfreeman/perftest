@@ -33,9 +33,9 @@ export default (() => {
   const start = (actions, dispatch) => {
     const { updateEverything, updateNothing, incAllInt, incNthInt } = actions
     // 
-    // perfTestFn = () => dispatch(updateEverything())
+    perfTestFn = () => dispatch(updateEverything())
     // perfTestFn = () => dispatch(updateNothing())
-    perfTestFn = () => dispatch(incAllInt())
+    // perfTestFn = () => dispatch(incAllInt())
     // perfTestFn = () => dispatch(incNthInt(10))
     // 
     testParams = 10

@@ -36,11 +36,13 @@ class ViewController: UIViewController {
             
             // these can be wrapped in a bindView() method
             
-            if let cellLabel: UILabel = cell.detailTextLabel, dispose = cell.dispose {
-                item.intOutlet.bindTo(cellLabel.rx_text).addDisposableTo(dispose)
+            if let cellDetailLabel: UILabel = cell.detailTextLabel, dispose = cell.dispose {
+                item.intOutlet.bindTo(cellDetailLabel.rx_text).addDisposableTo(dispose)
             }
-
-            cell.textLabel?.text = "\(item.id) \(item.str)"
+            
+            if let cellTitleLabel: UILabel = cell.textLabel, dispose = cell.dispose {
+                item.strOutlet.bindTo(cellTitleLabel.rx_text).addDisposableTo(dispose)
+            }
 
             return cell
         }

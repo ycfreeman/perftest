@@ -10,7 +10,7 @@ import RxDataSources
     var str: String { get set }
     var int: NSNumber { get set }
     // we can export internal values to JS like this
-    var hashValue: Int { get }
+//    var hashValue: Int { get }
     
     static func createWithId(id: NSNumber, str: String, int: NSNumber) -> JSItem
     
@@ -22,25 +22,37 @@ import RxDataSources
 @objc public class JSItem : NSObject, JSItemJSExports, IdentifiableType {
     // properties must be declared as `dynamic`
     dynamic var id: NSNumber
-    dynamic var str: String
+    dynamic var str: String {
+        didSet {
+            strObservable.value = str
+        }
+    }
     dynamic var int: NSNumber {
         didSet {
-            intObservable.value = int
+            intObservable.value = int.integerValue
         }
     }
     
-    private var intObservable: Variable<NSNumber>
+    private var strObservable: Variable<String>
+    private var intObservable: Variable<Int>
+    
+    
     var intOutlet: Observable<String> {
         return intObservable.asObservable().map({ number -> String in
-            return "\(number.integerValue)"
+            return "\(number)"
         })
+    }
+    
+    var strOutlet: Observable<String> {
+        return strObservable.asObservable()
     }
     
     init(id: NSNumber, str: String, int: NSNumber) {
         self.id = id
         self.str = str
         self.int = int
-        self.intObservable = Variable(self.int)
+        self.intObservable = Variable(self.int.integerValue)
+        self.strObservable = Variable(self.str)
     }
     
     public class func createWithId(id: NSNumber, str: String, int: NSNumber) -> JSItem {
