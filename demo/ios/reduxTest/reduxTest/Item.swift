@@ -9,6 +9,8 @@ import RxDataSources
     var id: NSNumber { get set }
     var str: String { get set }
     var int: NSNumber { get set }
+    // we can export internal values to JS like this
+    var hashValue: Int { get }
     
     static func createWithId(id: NSNumber, str: String, int: NSNumber) -> JSItem
     

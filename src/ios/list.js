@@ -61,6 +61,7 @@ export default class List {
                 let swiftItem = this.items[item.id];
                 swiftItem.str = item.str;
                 swiftItem.int = item.int;
+                // console.log(swiftItem.hashValue);
                 this.items[item.id] = swiftItem;
             }
         });
