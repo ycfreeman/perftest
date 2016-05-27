@@ -6,15 +6,15 @@ import RxDataSources
 class ItemService {
     static let sharedInstance = ItemService()
     
-    private var items = Variable<[Item]>([])
+    private var items = Variable<[JSItem]>([])
     
     private init() {}
     
-    func setItems(items: [Item]) {
+    func setItems(items: [JSItem]) {
         self.items.value = items
     }
     
-    var itemsDriver: Driver<[Item]> {
+    var itemsDriver: Driver<[JSItem]> {
         return items.asDriver()
     }
 }

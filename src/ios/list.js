@@ -4,7 +4,7 @@ import raf from 'raf'
 
 import * as actions from '../redux/actions'
 
-var Item = window.Item || {};
+var JSItem = window.JSItem || {};
 
 (function(){
 
@@ -39,6 +39,7 @@ export default class List {
         this.store = options.store;
         this.storeKey = 'myReducer';
         this.store.subscribe(this.render.bind(this));
+        this.items = [];
     }
 
     start() {
@@ -51,12 +52,20 @@ export default class List {
 
     update() {
         const { data } = this.getState();
+
         // convert js items to new instances of swift items
-        var items = data.map(item => {
-            return  Item.createWithIdStrInt(item.id,item.str,item.int);
+        data.forEach(item => {
+            if (!this.items.hasOwnProperty(item.id)) {
+                this.items[item.id] = JSItem.createWithIdStrInt(item.id, item.str, item.int);
+            } else {
+                let swiftItem = this.items[item.id];
+                swiftItem.str = item.str;
+                swiftItem.int = item.int;
+                this.items[item.id] = swiftItem;
+            }
         });
         // call native function here
-        Item.emitItems(items);
+        JSItem.emitItems(this.items);
     }
 
     render() {

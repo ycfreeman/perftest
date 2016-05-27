@@ -19,36 +19,37 @@ class ViewController: UIViewController {
         
     @IBOutlet weak var tableView: UITableView!
     
-    typealias ItemSection = SectionModel<String, Item>
-    
-    var sections: [ItemSection] = [
-        ItemSection(model: "Section", items: [])
+    var sections: [JSItemSection] = [
+        JSItemSection(header: "Section", items: [])
     ]
     
-    let reloadDataSource = RxTableViewSectionedReloadDataSource<ItemSection>()
+    let reloadDataSource = RxTableViewSectionedAnimatedDataSource<JSItemSection>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     
         reloadDataSource.configureCell = {
-            (dataSource, tableView, indexPath, item: Item) in
-            let cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier("Cell") ??
-                UITableViewCell(style: .Default, reuseIdentifier: "Cell")
-            
+            (dataSource, tableView, indexPath, item: JSItem) in
+            let cell: TableViewCell = tableView.dequeueReusableCellWithIdentifier("Cell") as? TableViewCell ??
+                TableViewCell(style: .Default, reuseIdentifier: "Cell")
+            if let cellLabel: UILabel = cell.detailTextLabel, dispose = cell.dispose {
+                item.intOutlet.bindTo(cellLabel.rx_text).addDisposableTo(dispose)
+            }
+
+//            cell.textLabel?.text = "\(item.id) \(item.str) \(item.int)"
             cell.textLabel?.text = "\(item.id) \(item.str)"
-            cell.detailTextLabel?.text = "\(item.int)"
 
             return cell
         }
         
         ItemService.sharedInstance.itemsDriver
             .map({[unowned self]
-                items -> [ItemSection] in
+                items -> [JSItemSection] in
                 self.sections[0].items = items
                 return self.sections
             })
-            .drive(tableView.rx_itemsWithDataSource(reloadDataSource))
+            .drive(tableView.rx_itemsAnimatedWithDataSource(reloadDataSource))
             .addDisposableTo(dispose)
 
         
@@ -72,7 +73,7 @@ class ViewController: UIViewController {
                     context.exceptionHandler = { context, exception in
                         print("JS Error: \(exception)")
                     }
-                    context.setObject(Item.self, forKeyedSubscript: "Item")
+                    context.setObject(JSItem.self, forKeyedSubscript: "JSItem")
                     context.evaluateScript(jsApp)
                     context.evaluateScript("list.start()")
             }
