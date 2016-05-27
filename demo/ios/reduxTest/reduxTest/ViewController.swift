@@ -33,11 +33,13 @@ class ViewController: UIViewController {
             (dataSource, tableView, indexPath, item: JSItem) in
             let cell: TableViewCell = tableView.dequeueReusableCellWithIdentifier("Cell") as? TableViewCell ??
                 TableViewCell(style: .Default, reuseIdentifier: "Cell")
+            
+            // these can be wrapped in a bindView() method
+            
             if let cellLabel: UILabel = cell.detailTextLabel, dispose = cell.dispose {
                 item.intOutlet.bindTo(cellLabel.rx_text).addDisposableTo(dispose)
             }
 
-//            cell.textLabel?.text = "\(item.id) \(item.str) \(item.int)"
             cell.textLabel?.text = "\(item.id) \(item.str)"
 
             return cell
