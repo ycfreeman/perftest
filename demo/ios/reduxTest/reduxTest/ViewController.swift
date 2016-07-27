@@ -19,16 +19,40 @@ class ViewController: UIViewController {
         
     @IBOutlet weak var tableView: UITableView!
     
+    let webView: UIWebView!
+    
+    lazy var context: JSContext! = {
+        
+        //  let context = JSContext()
+        //  JSCoreBom.shared().extend(context)
+        
+        guard let context = self.webView.valueForKeyPath("documentView.webView.mainFrame.javaScriptContext") as? JSContext else {
+            return nil
+        }
+        return context
+    }()
+    
     var sections: [JSItemSection] = [
         JSItemSection(header: "Section", items: [])
     ]
     
     let reloadDataSource = RxTableViewSectionedAnimatedDataSource<JSItemSection>()
+    required init?(coder aDecoder: NSCoder) {
+        webView = UIWebView()
+        super.init(coder: aDecoder)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     
+        
+        webView.hidden = true
+        webView.frame = CGRect.zero
+        
+        // need to addSubview to
+        view.addSubview(webView)
+        
         reloadDataSource.configureCell = {
             (dataSource, tableView, indexPath, item: JSItem) in
             let cell: TableViewCell = tableView.dequeueReusableCellWithIdentifier("Cell") as? TableViewCell ??
@@ -37,11 +61,11 @@ class ViewController: UIViewController {
             // these can be wrapped in a bindView() method
             
             if let cellDetailLabel: UILabel = cell.detailTextLabel, dispose = cell.dispose {
-                item.intOutlet.bindTo(cellDetailLabel.rx_text).addDisposableTo(dispose)
+                item.intOutlet.observeOn(MainScheduler.instance).bindTo(cellDetailLabel.rx_text).addDisposableTo(dispose)
             }
             
             if let cellTitleLabel: UILabel = cell.textLabel, dispose = cell.dispose {
-                item.strOutlet.bindTo(cellTitleLabel.rx_text).addDisposableTo(dispose)
+                item.strOutlet.observeOn(MainScheduler.instance).bindTo(cellTitleLabel.rx_text).addDisposableTo(dispose)
             }
 
             return cell
@@ -53,7 +77,7 @@ class ViewController: UIViewController {
                 self.sections[0].items = items
                 return self.sections
             })
-            .drive(tableView.rx_itemsAnimatedWithDataSource(reloadDataSource))
+            .drive(tableView.rx_itemsWithDataSource(reloadDataSource))
             .addDisposableTo(dispose)
 
         
@@ -65,23 +89,32 @@ class ViewController: UIViewController {
             // we can have rx stuff here in native environment
             // we also need an adaptor that converts js object to native object / view model
             // then we consume the native object / view model
-            if let appJsData = NSDataAsset(name: "app"),
-                script = String(data: appJsData.data, encoding: NSUTF8StringEncoding) {
-                    
-                    let jsApp: String = "var window = this; \(script)"
-                    
-                    // so we evaluate it
-                    
-                    let context = JSContext()
-                    JSCoreBom.shared().extend(context)
-                    context.exceptionHandler = { context, exception in
-                        print("JS Error: \(exception)")
-                    }
-                    context.setObject(JSItem.self, forKeyedSubscript: "JSItem")
-                    context.evaluateScript(jsApp)
-                    context.evaluateScript("list.start()")
-            }
+//            if let appJsData = NSDataAsset(name: "app"),
+//                script = String(data: appJsData.data, encoding: NSUTF8StringEncoding) {
+            guard let url = NSBundle.mainBundle().URLForResource("app", withExtension: "js"),
+                appJSData = NSData(contentsOfURL: url),
+                script = String(data: appJSData, encoding: NSUTF8StringEncoding)
+                else { return }
+            
+            dispatch_async(dispatch_get_main_queue()) {
+                [weak self] in
+                
+                let jsApp: String = "var window = this; \(script)"
+                
+                guard let context = self?.context else {
+                    return
+                }
+//                 so we evaluate it
 
+                context.exceptionHandler = { context, exception in
+                    print("JS Error: \(exception)")
+                }
+                context.setObject(JSItem.self, forKeyedSubscript: "JSItem")
+                context.evaluateScript(jsApp)
+                context.evaluateScript("list.start()")
+
+            }
+            
         }
         
      
